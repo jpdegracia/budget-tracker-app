@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import dotenv from 'dotenv';
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { connectDB } from './db/connectDB.js';
 
@@ -33,6 +34,7 @@ const corsOption = {
 const PORT = process.env.PORT || 4000;
 
 app.use(cors(corsOption));
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

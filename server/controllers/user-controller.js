@@ -2,7 +2,8 @@ import mongoose from 'mongoose';
 import { User } from '../models/User.js';
 import { compare } from 'bcrypt';
 import { generateTokenAndCookie } from '../utils/generateTokenAndCookie.js';
-
+import { Role } from '../models/Role.js';
+import { Permission } from '../models/Permission.js';
 
 export const registerUser = async (req, res) => {
     const { firstName, lastName, userName, email, password, role} = req.body;
@@ -29,7 +30,7 @@ export const registerUser = async (req, res) => {
         const targetRoleName = role || "User";
 
         // 2. Find the Role document where the field 'roleName' matches our target
-        const roleDoc = await mongoose.model('Role').findOne({ roleName: targetRoleName });
+        const roleDoc = await Role.findOne({ roleName: targetRoleName });
 
         if (!roleDoc) {
             return res.status(400).json({ 
@@ -119,3 +120,10 @@ export const loginUser = async (req, res) => {
         }
     }
 }
+
+// export const userProfile = async (req, res) => {
+//     const { id } = req.params;
+//     try {
+        
+//     }
+// }

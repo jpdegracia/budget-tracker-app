@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import { Permission } from '../models/Permission.js';
 
 export const generateTokenAndCookie = (res, user) => {
     const permissionList = user.role.permissions.map(p => p.permissionName);
@@ -14,6 +15,8 @@ export const generateTokenAndCookie = (res, user) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: '7d', // Set to 7 days or your preferred duration
     });
+
+    // console.log(`Bearer ${token}`);
 
     // 4. Set the Cookie
     res.cookie('token', token, {

@@ -11,11 +11,11 @@ const roleSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
-    permissions: {
+    permissions: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Permission",
         required: [true, "Permissions are required"],
-    }
+    }]
 }, {timestamps: true});
 
 export const Role = mongoose.model("Role", roleSchema);

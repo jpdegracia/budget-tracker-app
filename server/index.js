@@ -5,7 +5,9 @@ import cors from 'cors';
 import { connectDB } from './db/connectDB.js';
 
 //import of routes
-import userRoutes from './routes/UserRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import roleRoutes from './routes/roleRoutes.js';
+import permissionRoutes from './routes/permissionRoutes.js';
 
 
 const app = express();
@@ -40,6 +42,8 @@ app.get('/', (req, res) => {
 
 //API routes
 app.use('/users', userRoutes);
+app.use('/roles', roleRoutes);
+app.use('/permissions', permissionRoutes);
 
 //Database
 connectDB()

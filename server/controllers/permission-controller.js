@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import { Permission } from '../models/Permission.js';
 import { Role } from '../models/Role.js';
 
@@ -66,7 +67,7 @@ export const createPermission = async (req, res) => {
 //desc Get all Permissions
 //route GET /permissions
 //access Private (requires Role: Admin and Permission: permission:read_all)
-export const getAllPermission = async (req, res) => {
+export const getAllPermissions = async (req, res) => {
     try {
         const permissions = await Permission.find({});
         return res.status(200).json({ 

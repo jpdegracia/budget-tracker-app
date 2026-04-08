@@ -69,7 +69,7 @@ export default function HomeScreen() {
         </ThemedText>
       </ThemedView>
 
-      {/* Step 5 */}
+      {/* Step 5
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 5: Deploy your app</ThemedText>
         <ThemedText>
@@ -77,7 +77,7 @@ export default function HomeScreen() {
           bundle your project for production or <ThemedText type="defaultSemiBold">eas build</ThemedText> 
           to create a native binary.
         </ThemedText>
-      </ThemedView>
+      </ThemedView> */}
 
     </ParallaxScrollView>
   );

@@ -16,6 +16,11 @@ const userSchema = new mongoose.Schema({
         require: true,
         unique: true
     },
+    role: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Role",
+        required: [true, 'Role is required']
+    },
     password: {
         type: String,
         require: function () {
@@ -46,13 +51,16 @@ const userSchema = new mongoose.Schema({
 
 //pre-saving & hashing of password
 
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function () {
     if (!this.isModified('password') || !this.password) {
-        return next ();
+        return;
     }
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-    next()
+    try {
+        const salt = await bcrypt.genSalt(10);
+        this.password = await bcrypt.hash(this.password, salt);
+    } catch (error) {
+        throw(error); // Pass the error to Mongoose
+    }
 });
 
 userSchema.methods.comparePassword = async function (candidatePassword) {
